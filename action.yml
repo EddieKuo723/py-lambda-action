@@ -12,13 +12,16 @@ inputs:
   lambda_function_name:
     description: The Lambda function name. Check the AWS docs/readme for examples.
     required: true
+  lambda_variables:
+    description: Lambda function variables
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ inputs.requirements_txt }}
+  args:    
     - ${{ inputs.lambda_layer_arn }}
     - ${{ inputs.lambda_function_name }}
+    - ${{ inputs.lambda_variables}}
 branding:
   icon: 'layers'
   color: 'yellow'
